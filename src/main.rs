@@ -62,6 +62,14 @@ fn use_unsafe_with_static(x:u64) {
     }
 }
 
+unsafe trait Foo {
+    //omg that's an unsafe trait
+}
+
+unsafe impl Foo for i64 {
+    //we're defining our methods here
+}
+
 fn main() {
     use_unsafe_with_static(3);
 }

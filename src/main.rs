@@ -1,4 +1,4 @@
-use std::slice;
+use std::{i64, slice};
 
 #[allow(unused)]
 unsafe fn pointers(){
@@ -23,15 +23,25 @@ fn split_as_mut(slice: &mut [i64],mid: usize)->(&mut [i64], &mut [i64]){
 
     assert!(mid <= len);
 unsafe{
-(
-slice::from_raw_parts_mut(ptr, mid),
-slice::from_raw_parts_mut(ptr.add(mid), len-mid)
-)
-}
+        (
+        slice::from_raw_parts_mut(ptr, mid),
+        slice::from_raw_parts_mut(ptr.add(mid), len-mid)
+        )
+    }
 }
 
-fn main() {
+extern "C"{
+    fn abs(input: i64)->i64;
+}
+
+#[allow(unused)]
+fn use_abs_from_c(x:i64){
     unsafe{
-        pointers();
+        println!("That's the representation of {} as an absolute in C: {}",x,abs(x))
     }
+}
+
+
+fn main() {
+    use_abs_from_c(-13);
 }

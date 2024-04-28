@@ -42,9 +42,26 @@ fn use_abs_from_c(x:i64){
 }
 
 
+#[allow(unused)]
 static HELLO_WORLD: &str ="Hello, world!";
+#[allow(unused)]
+static mut COUNTER: u64 = 0;
 
+#[allow(unused)]
+fn add_to_counter(value:u64) {
+    unsafe{
+        COUNTER+=value;
+    }
+}
+
+#[allow(unused)]
+fn use_unsafe_with_static(x:u64) {
+    add_to_counter(x);
+    unsafe{
+        println!("COUNTER : {}",COUNTER)
+    }
+}
 
 fn main() {
-    println!("Catch my dear and {}",HELLO_WORLD)
+    use_unsafe_with_static(3);
 }

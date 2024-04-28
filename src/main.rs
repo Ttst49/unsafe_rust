@@ -42,6 +42,9 @@ fn use_abs_from_c(x:i64){
 }
 
 
+static HELLO_WORLD: &str ="Hello, world!";
+
+
 fn main() {
-    use_abs_from_c(-13);
+    println!("Catch my dear and {}",HELLO_WORLD)
 }
